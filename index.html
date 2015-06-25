@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Reveal.js 3 Slide Demo</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+</head>
+<body>
+
+<!--Wrap the slide show in reveal.-->
+<div class="reveal">
+    
+    <div class="slides">
+        
+        <section>
+            <h2>Sweep - Full Text Decentralized Search</h2>
+        </section>
+        
+        <section>
+            <h2>Motivation</h2>
+        </section>
+        
+        <section>
+            
+            <section>
+                <h2>Leader Election</h2>
+            </section>
+            
+            
+            <!--Vertical Section-->
+            <section>
+                <h3>Election Leader</h3>
+            </section>
+            
+            <section>
+                <h3>Election Follower</h3>
+            </section>
+            
+        </section>
+        
+        <section>
+            <h2>Overlay Network</h2>
+        </section>
+        
+        
+    </div>
+    
+    
+    
+</div>
+
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+            { src: 'plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+</body>
+</html>
