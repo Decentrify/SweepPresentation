@@ -24,7 +24,7 @@
                 <p class="fragment">No Fully Decentralized Search System</p>
                 <p class="fragment">Full Text Search Engine</p>
                 <p class="fragment">Annoying Youtube Ads</p>
-                <p class="fragment"> Youtube managed to bypass Ad Blocker</p>
+                <p class="fragment">Youtube managed to bypass Ad Blocker</p>
             </section>
         </section>
 
@@ -35,37 +35,21 @@
             <p class="fragment">Common Interest Groups</p>
         </section>
         
+        
+        
         <section>
-            
-            <!--Vertical Section-->
             <section>
-                <h2>Leader Election</h2>
-                <p class="fragment">Election Based on Utility</p>
-                <p class="fragment">Quick Election</p>
-                <p class="fragment">Extension Process</p>
-            </section>
-
-            <section>
-                <h3>Election Leader</h3>
-            </section>
-
-            <section>
-                <h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-  }
-}
-                    </code></pre>
-                <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+                <h3>System Model and Architecture</h3>
+                <ul>
+                    <li class="fragment">Pull Protocol</li>
+                    <li class="fragment">Entry Semantics</li>
+                    <li class="fragment">Entry Dissemination</li>
+                </ul>
             </section>
             
-            <section>
-                <h3>Election Follower</h3>
-            </section>
             
         </section>
+
 
         
         <section>
@@ -108,6 +92,65 @@ function linkify( selector ) {
 
         </section>
 
+        <section>
+
+            <!--Vertical Section-->
+            <section>
+                <h2>Leader Selection</h2>
+                <ul>
+                    <li class="fragment">Combination of Paxos, Bully</li>
+                    <li class="fragment">Selection Based on Utility</li>
+                    <li class="fragment">Quickly Elect new Leader</li>
+                    <li class="fragment">Leadership valid for predefined lease period</li>
+                    <li class="fragment">Check for Better Utility Nodes for Fairness.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Election Leader</h3>
+                <ul>
+                    <li class="fragment">Wait for n convergence rounds</li>
+                    <li class="fragment">Reset Round if gradient view changes beyond predefined threshold.</li>
+                </ul>
+                <pre class="fragment"><code data-trim contenteditable>
+
+if(!higherNodes && !leaderGroup && converged){
+
+    identifyLeaderGroupNodes();
+    startVoting();
+}
+                </code></pre>
+            </section>
+            <section>
+                <h3>Election Follower</h3>
+                <ul>
+                    <li class="fragment">Reject Promise if already promised.</li>
+                    <li class="fragment">Check Local Gradient for Higher Utility Nodes</li>
+                    <li class="fragment">Set <strong>Promised = true</strong> in case no higher node found.</li>
+
+                </ul>
+                <pre class="fragment"><code data-trim contenteditable>
+
+if(!alreadyPromised){
+
+    highestUtilityNode = getHighestUtilityNode();
+    boolean isLeaderGreater = compareWithLocalGreatestNode();
+    if(isLeaderGreater){
+        return promise;
+    }
+
+    else{
+        reject();
+    }
+}
+
+else{
+    reject();
+}
+                </code></pre>
+            </section>
+
+        </section>
 
         <!--    EVALUATIONS   -->
         <section>
