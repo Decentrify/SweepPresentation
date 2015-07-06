@@ -21,23 +21,29 @@
         <section>
             <section id="fragments">
                 <h2>Motivation</h2>
+
                 <p class="fragment">No Fully Decentralized Search System</p>
+
                 <p class="fragment">Full Text Search Engine</p>
+
                 <p class="fragment">Annoying Youtube Ads</p>
+
                 <p class="fragment">Youtube managed to bypass Ad Blocker</p>
             </section>
         </section>
 
         <section data-background-video="NewsDisseminationBatman.mp4">
         </section>
-        
+
         <section>
             <h2>Application Areas</h2>
+
             <p class="fragment">Fast Dissemination of News</p>
+
             <p class="fragment">Music / Video Streaming Service</p>
+
             <p class="fragment">Common Interest Groups</p>
         </section>
-
 
 
         <section>
@@ -47,9 +53,14 @@
                     <li class="fragment">Pull Protocol</li>
                     <li class="fragment">Entry Semantics</li>
                     <li class="fragment">Entry Dissemination</li>
+                    <li class="fragment">Large Fanout</li>
                 </ul>
             </section>
 
+            <section>
+                <h3>Architectural Overview</h3>
+                <img width="540" height="600" data-src="img/architecture.png" alt="Architectural Overview">
+            </section>
 
             <section>
                 <h3>Pull Protocol</h3>
@@ -57,31 +68,70 @@
                     <li class="fragment">Why Pull Protocol ?</li>
                     <li class="fragment">Peers always asking, What's next ?</li>
                     <li class="fragment">Pull from fixed number of nodes above in utility</li>
-                    <li class="fragment">Verify and incorporate update ..  </li>
+                    <li class="fragment">Verify and incorporate update ..</li>
                 </ul>
             </section>
 
             <section>
-                <h3>Entry identifier structure</h3>
+
+                <h3>System Model (1 / 3)</h3>
+                <h5 class="fragment">Entry Semantics</h5>
                 <ul>
-                    <li class="fragment"> &lt; epoch, leaderid, entryid &gt;</li>
-                    <li class="fragment"> Helps in creating dense identifier space</li>
+                    <li class="fragment">&lt; epoch, leaderid, entryid &gt;</li>
+                    <li class="fragment">epoch - simple counter</li>
+                    <li class="fragment">leaderid - node identifier</li>
+                    <li class="fragment">entryid - entry identifier</li>
+                    <li class="fragment">Helps in creating dense identifier space.</li>
+                </ul>
+
+            </section>
+
+            <section>
+
+                <h3>System Model (2 / 3)</h3>
+                <h5 class="fragment">Leader Unit</h5>
+                <ul>
+                    <li class="fragment">Packet holding predefined max entries.</li>
+                    <li class="fragment">Leader adds entries in a leader unit.</li>
+                    <li class="fragment">&lt; <b>epoch</b>, <b>leaderid</b>, <b>number of entries</b> &gt;</li>
+                    <li class="fragment">Max <i>N entries</i> can be added in leader unit.</li>
+                    <li class="fragment">Leader performs unit switch by closing previous epoch.</li>
+                </ul>
+
+            </section>
+
+            <section>
+
+                <h3>System Model (3 / 3)</h3>
+                <h5 class="fragment">Timeline</h5>
+                <img width="300" height="380" data-src="img/timeline.png" alt="timeline">
+                <ul>
+                    <li class="fragment">Never allow out of order addition of leader units.</li>
                 </ul>
             </section>
 
             <section>
                 <h3>Entry Dissemination</h3>
                 <ul>
-                    <li class="fragment">Timeline ?</li>
-                    <li class="fragment"></li>
+                    <li class="fragment">Control Pull informs application about the entries in the epoch.</li>
+                    <li class="fragment">Application updates missing tracker about the update.</li>
+                    <li class="fragment">Entry pull protocol gets initiated with the updated information.</li>
                 </ul>
             </section>
 
 
+            <section>
+                <h3>Large Fanout</h3>
+                <ul>
+                    <li class="fragment">Concept of latency variability</li>
+                    <li class="fragment">Send request to more than one node in each shard.</li>
+                    <li class="fragment">Prevent delay by Stragglers</li>
+                    <li class="fragment">Collect responses in a separate lucene instance.</li>
+                </ul>
+            </section>
 
 
         </section>
-
 
 
         <section>
@@ -116,7 +166,7 @@
                 <ul>
                     <li class="fragment">Use the Preference Function to Determine Preferred Nodes</li>
                     <li class="fragment">Higher Utility Nodes Concentrated as Center</li>
-                    <li class="fragment">Ranking Of Nodes with 0 at center (Leader) </li>
+                    <li class="fragment">Ranking Of Nodes with 0 at center (Leader)</li>
                     <li class="fragment">Individual Rank set by Looking at Neighbors and Adjusting Self</li>
                     <li class="fragment">Fingers to Nodes Above for Fast Dissemination</li>
                 </ul>
@@ -146,11 +196,11 @@
                 </ul>
                 <pre class="fragment"><code data-trim contenteditable>
 
-if(!higherNodes && !leaderGroup && converged){
+                    if(!higherNodes && !leaderGroup && converged){
 
-    identifyLeaderGroupNodes();
-    startVoting();
-}
+                    identifyLeaderGroupNodes();
+                    startVoting();
+                    }
                 </code></pre>
             </section>
             <section>
@@ -163,33 +213,34 @@ if(!higherNodes && !leaderGroup && converged){
                 </ul>
                 <pre class="fragment"><code data-trim contenteditable>
 
-if(!alreadyPromised){
+                    if(!alreadyPromised){
 
-    highestUtilityNode = getHighestUtilityNode();
-    boolean isLeaderGreater = compareWithLocalGreatestNode();
-    if(isLeaderGreater){
-        return promise;
-    }
+                    highestUtilityNode = getHighestUtilityNode();
+                    boolean isLeaderGreater = compareWithLocalGreatestNode();
+                    if(isLeaderGreater){
+                    return promise;
+                    }
 
-    else{
-        reject();
-    }
-}
+                    else{
+                    reject();
+                    }
+                    }
 
-else{
-    reject();
-}
+                    else{
+                    reject();
+                    }
                 </code></pre>
             </section>
 
         </section>
 
         <!--    EVALUATIONS   -->
+
         <section>
 
             <section>
                 <h2>Evaluations</h2>
-                <ul>    
+                <ul>
                     <li class="fragment">Convergence Time Experiment</li>
                     <li class="fragment">Add Entry Throughput</li>
                     <li class="fragment">Churn Experiment</li>
@@ -214,6 +265,7 @@ else{
                     <li class="fragment">Add 1 entry / sec</li>
                 </ul>
                 <p class="fragment" style="text-align: center">Why 99% seems to be low ?</p>
+
                 <p class="fragment" style="text-align: center">Why see - saw like structure ?</p>
             </section>
 
@@ -239,7 +291,6 @@ else{
 
 
         </section>
-
 
 
         <!--  CONCLUSION  -->
@@ -271,9 +322,7 @@ else{
     </div>
 
 
-
 </div>
-
 
 
 <script src="lib/js/head.min.js"></script>
@@ -293,12 +342,30 @@ else{
 
         // Optional reveal.js plugins
         dependencies: [
-            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-            { src: 'plugin/zoom-js/zoom.js', async: true },
-            { src: 'plugin/notes/notes.js', async: true }
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
         ]
     });
 
