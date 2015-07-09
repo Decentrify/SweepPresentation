@@ -51,6 +51,7 @@
                 <h3>System Model and Architecture</h3>
                 <ul>
                     <li class="fragment">Pull Protocol</li>
+                    <li class="fragment">Sharding Protocol</li>
                     <li class="fragment">Entry Semantics</li>
                     <li class="fragment">Entry Dissemination</li>
                     <li class="fragment">Large Fanout</li>
@@ -69,6 +70,36 @@
                     <li class="fragment">Peers always asking, What's next ?</li>
                     <li class="fragment">Pull from fixed number of nodes above in utility</li>
                     <li class="fragment">Verify and incorporate update ..</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Entry Dissemination</h3>
+                <ul>
+                    <li class="fragment">Control Pull informs application about updated leader units.</li>
+                    <li class="fragment">Application informs missing tracker about the update.</li>
+                    <li class="fragment">Entry pull protocol gets initiated with the updated information.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Sharding Protocol</h3>
+                <ul>
+                    <li class="fragment">Maximum Limit to entries, which a node can hold.</li>
+                    <li class="fragment">Leader Sorts the entry and calculate the midpoint.</li>
+                    <li class="fragment">Initiates sharding and perform 2 phase commit over leader group.</li>
+                    <li class="fragment">Bit manipulation used to identify region higher or lower than split point needs to be removed.</li>
+                    <li class="fragment">Inform Gradient about Split. But why ?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Large Fanout</h3>
+                <ul>
+                    <li class="fragment">Concept of latency variability</li>
+                    <li class="fragment">Send request to more than one node in each shard.</li>
+                    <li class="fragment">Prevent delay by Stragglers</li>
+                    <li class="fragment">Collect responses in a separate lucene instance.</li>
                 </ul>
             </section>
 
@@ -110,25 +141,7 @@
                 </ul>
             </section>
 
-            <section>
-                <h3>Entry Dissemination</h3>
-                <ul>
-                    <li class="fragment">Control Pull informs application about updated leader units.</li>
-                    <li class="fragment">Application informs missing tracker about the update.</li>
-                    <li class="fragment">Entry pull protocol gets initiated with the updated information.</li>
-                </ul>
-            </section>
-
-
-            <section>
-                <h3>Large Fanout</h3>
-                <ul>
-                    <li class="fragment">Concept of latency variability</li>
-                    <li class="fragment">Send request to more than one node in each shard.</li>
-                    <li class="fragment">Prevent delay by Stragglers</li>
-                    <li class="fragment">Collect responses in a separate lucene instance.</li>
-                </ul>
-            </section>
+            
 
 
         </section>
@@ -313,6 +326,7 @@ else{
                 <ul>
                     <li class="fragment">Ever growing timeline</li>
                     <li class="fragment">Semantics for edge cases undefined.</li>
+                    <li class="fragment">No Trust Model</li>
                 </ul>
             </section>
 
@@ -329,13 +343,14 @@ else{
                     <li class="fragment">Network Merge Handling</li>
                 </ul>                
             </section>
-
-
         </section>
 
+        <section>
+            <h2>Questions ?</h2>
+        </section>
         
         <section data-background="friday.gif">
-            <h2> Thank You .. !</h2>
+            <h2></h2>
         </section>
 
 
