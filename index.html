@@ -86,10 +86,10 @@
                 <h3>Sharding Protocol</h3>
                 <ul>
                     <li class="fragment">Maximum Limit to entries, which a node can hold.</li>
-                    <li class="fragment">Leader Sorts the entry and calculate the midpoint.</li>
+                    <li class="fragment">Leader sorts the entries locally and calculates the midpoint.</li>
                     <li class="fragment">Initiates sharding and perform 2 phase commit over leader group.</li>
                     <li class="fragment">Bit manipulation used to identify region higher or lower than split point needs to be removed.</li>
-                    <li class="fragment">Inform Gradient about Split. But why ?</li>
+                    <li class="fragment">Inform Gradient about split. But why ?</li>
                 </ul>
             </section>
 
@@ -134,15 +134,23 @@
             <section>
 
                 <h3>System Model (3 / 3)</h3>
-                <h5 class="fragment">Timeline</h5>
+                <h5>Timeline</h5>
                 <img width="300" height="380" data-src="img/timeline.png" alt="timeline">
                 <ul>
                     <li class="fragment">Never allow out of order addition of leader units.</li>
+                    <li class="fragment">Always reply with the next leader unit.</li>
                 </ul>
             </section>
 
-            
+            <section>
+                <h3>System Model (4/4) </h3>
+                <h5>Timeline Merge</h5>
+                <img width="640" height="520" data-src="img/timelineMerge.png" alt="timelineMerge">
 
+                <ul>
+                    <li class="fragment">Dense spaces to rescue ... </li>
+                </ul>
+            </section>
 
         </section>
 
