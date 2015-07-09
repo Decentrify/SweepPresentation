@@ -51,28 +51,71 @@
             <section>
                 <h2>Overlay Network</h2>
                 <ul>
-                    <li class="fragment">Preference Function</li>
                     <li class="fragment">Peer Sampling Service</li>
                     <li class="fragment">Gradient P2P Topology</li>
                 </ul>
             </section>
 
-            <section>
-                <h3>Preference and Utility Function</h3>
-                <ul>
-                    <li class="fragment">Higher Utility But Closer</li>
-                    <li class="fragment">Utility Function to Provide Overall Order
-                    <li class="fragment">[ Group Membership > Replication Score > PeerScore > PeerId ]</li>
-                </ul>
-            </section>
+            <!--<section>-->
+                <!--<h3>Preference and Utility Function</h3>-->
+                <!--<ul>-->
+                    <!--<li class="fragment">Higher Utility But Closer</li>-->
+                    <!--<li class="fragment">Utility Function to Provide Overall Order-->
+                    <!--<li class="fragment">[ Group Membership > Replication Score > PeerScore > PeerId ]</li>-->
+                <!--</ul>-->
+            <!--</section>-->
 
             <section>
                 <h3>Croupier - Peer Sampling Service</h3>
                 <ul>
-                    <li class="fragment">Discover New Nodes</li>
-                    <li class="fragment">Feed Samples to Gradient</li>
+                    <li class="fragment">Discover new nodes in system to communicate to.</li>
                 </ul>
             </section>
+
+
+            <section>
+
+                <h3>Motivation for using gradient (1 / 2)</h3>
+                <ul>
+                    <li class="fragment">Basic problem in entry dissemination in system is <b>Agreement</b></li>
+                    <li class="fragment">Agreement on the differences in entries.</li>
+                    <li class="fragment">Some systems tend to use <b>Merkle Trees</b></li>
+                    <li class="fragment">
+                        Disadvantages of Merkle Trees
+                        <ul>
+                            <li class="fragment">Large network traffic in deciding differences.</li>
+                            <li class="fragment">Edge cases in which the differences can't be identified.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <h3>Motivation for using gradient (2 / 2)</h3>
+                <ul>
+
+                    <li class="fragment"><b>Goal:</b>
+
+                        <ul>
+                            <li class="fragment">We wanted to identify the missing entries easily.</li>
+                            <li class="fragment">Easily identify the nodes from which the difference could be identified.</li>
+                        </ul>
+
+                    </li>
+
+                    <li class="fragment" style="margin-top: 50px"><b>Solution:</b>
+                        <ul>
+                            <li class="fragment">Monotonically increasing entry identifier.</li>
+                            <li class="fragment">Difference could be identified based on latest entry seen by node.</li>
+                            <li class="fragment">Use gradient topology for arrangement of nodes in shard.</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+
 
             <section>
                 <h3>Gradient P2P Topology</h3>
