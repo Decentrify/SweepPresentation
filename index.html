@@ -121,7 +121,7 @@
                 <h3>Gradient P2P Topology</h3>
                 <ul>
                     <li class="fragment">Help find the nodes with higher utility than self.</li>
-                    <li class="fragment">Higher Utility Nodes Concentrated as Center</li>
+                    <li class="fragment">Higher Utility Nodes Concentrated at Center</li>
                     <li class="fragment">Ranking Of Nodes with 0 at center (Leader)</li>
                     <li class="fragment">Fingers to Nodes Above for Fast Dissemination</li>
                 </ul>
@@ -267,17 +267,34 @@ else{
                     <li class="fragment">Collect responses in a separate lucene instance.</li>
                 </ul>
             </section>
+            
+            
+            <section>
+                <h3>System Model (1 / 5)</h3>
+                <h5 class="fragment">Dense Identifier Space</h5>
+                <ul>
+                    <li class="fragment">In a data center, components and switches failing ... </li>
+                    <li class="fragment">Network gets partitioned ..</li>
+                    <li class="fragment">System is self stabilizing, partitioned nodes think leader is dead and elect new leader.</li>
+                    <li class="fragment">Elected leader picks up from the point where the previous leader left.</li>
+                    <li class="fragment">Cause Issue during <b>Partition Merge</b>.</li>
+                </ul>
+            </section>
 
+            <section data-background-video="denseSpace.mp4">
+            </section>
+            
             <section>
 
-                <h3>System Model (1 / 4)</h3>
+                <h3>System Model (2 / 5)</h3>
                 <h5 class="fragment">Entry Semantics</h5>
                 <ul>
                     <li class="fragment">&lt; epoch, leaderid, entryid &gt;</li>
-                    <li class="fragment">epoch - simple counter</li>
+                    <li class="fragment">epoch - monotonically increasing counter</li>
                     <li class="fragment">leaderid - node identifier</li>
                     <li class="fragment">entryid - entry identifier</li>
                     <li class="fragment">Helps in creating dense identifier space.</li>
+                    <li class="fragment">Why do we need epoch identifier ?</li>
                 </ul>
 
             </section>
