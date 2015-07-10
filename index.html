@@ -32,7 +32,7 @@
             </section>
         </section>
 
-        <section data-background-video="NewsDisseminationBatman.mp4">
+        <section data-background-video="NewsDissemination.mp4">
         </section>
 
         <section>
@@ -120,10 +120,9 @@
             <section>
                 <h3>Gradient P2P Topology</h3>
                 <ul>
-                    <li class="fragment">Use the Preference Function to Determine Preferred Nodes</li>
+                    <li class="fragment">Help find the nodes with higher utility than self.</li>
                     <li class="fragment">Higher Utility Nodes Concentrated as Center</li>
                     <li class="fragment">Ranking Of Nodes with 0 at center (Leader)</li>
-                    <li class="fragment">Individual Rank set by Looking at Neighbors and Adjusting Self</li>
                     <li class="fragment">Fingers to Nodes Above for Fast Dissemination</li>
                 </ul>
             </section>
@@ -136,16 +135,16 @@
             <section>
                 <h2>Leader Selection</h2>
                 <ul>
-                    <li class="fragment">Combination of Paxos, Bully</li>
-                    <li class="fragment">Selection Based on Utility</li>
+                    <li class="fragment">Gradient helped to locate node with highest utility.</li>
+                    <li class="fragment">Leader Selection based on <b>Utility</b>.</li>
                     <li class="fragment">Quickly Elect new Leader</li>
-                    <li class="fragment">Leadership valid for predefined lease period</li>
-                    <li class="fragment">Check for Better Utility Nodes for Fairness.</li>
+                    <li class="fragment">Leadership based on time based lease, needs to be extended.</li>
+                    <li class="fragment">Before extension, check for Better Utility Nodes for Fairness.</li>
                 </ul>
             </section>
 
             <section>
-                <h3>Election Leader</h3>
+                <h3>Leader Election</h3>
                 <ul>
                     <li class="fragment">Wait for n convergence rounds</li>
                     <li class="fragment">Reset Round if gradient view changes beyond predefined threshold.</li>
@@ -190,7 +189,7 @@ else{
             </section>
 
 
-            <section data-background-video="LeaderSelection.mp4">
+            <section data-background-video="LeaderSelectionAdv.mp4">
             </section>
 
         </section>
@@ -220,9 +219,24 @@ else{
                     <li class="fragment">Peers always asking, What's next ?</li>
                     <li class="fragment">Pull from fixed number of nodes above in utility</li>
                     <li class="fragment">Verify and incorporate update ..</li>
+                    <li class="fragment"> Types of Pull Protocol:
+                        <ul>
+                            <li class="fragment">Control Pull Protocol</li>
+                            <li class="fragment">Index Pull Protocol</li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </section>
 
+            <section>
+                <h3>Information Addition Overview</h3>
+                <ul>
+                    <li class="fragment">Control or Entry Information</li>
+                    <li class="fragment">Leader performs a Quorum Based Commit over leader group.</li>
+                </ul>
+            </section>
+            
             <section>
                 <h3>Entry Dissemination</h3>
                 <ul>
@@ -236,10 +250,11 @@ else{
                 <h3>Sharding Protocol</h3>
                 <ul>
                     <li class="fragment">Maximum Limit to entries, which a node can hold.</li>
+                    <li class="fragment">If limit reached, leader initiates sharding protocol.</li>
                     <li class="fragment">Leader sorts the entries locally and calculates the midpoint.</li>
-                    <li class="fragment">Initiates sharding and perform 2 phase commit over leader group.</li>
+                    <li class="fragment">Information commit over leader group.</li>
                     <li class="fragment">Bit manipulation used to identify region higher or lower than split point needs to be removed.</li>
-                    <li class="fragment">Inform Gradient about split. But why ?</li>
+                    <li class="fragment">Inform overlay about split. But why ?</li>
                 </ul>
             </section>
 
